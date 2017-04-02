@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# export PLATFORM=mimasv2
+# export TARGET=base
+# export CPU=lm32
+
 if [ "`whoami`" = "root" ]
 then
     echo "Running the script as root is not permitted"
