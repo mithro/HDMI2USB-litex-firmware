@@ -4,23 +4,25 @@
 
 ### Step 1 - If your board requires a proprietary toolchain, install that.
 
-  * Spartan 6 based boards require [Xilinx ISE](). 
+  * Spartan 6 based boards require [Xilinx ISE]().
     Xilinx ISE is a propitary toolchain which *must be installed manually*.
 
     This is *most* boards, including
-     - MimasV2,
-     - Opsis, 
      - Atlys,
-     - Pipistrello,
+     - MimasV2,
+     - Opsis,
+     - TODO: Cmod S6
+     - TODO: Pipistrello,
      - TODO: minispartan6/minispartan6+
 
   * "Series 7" based boards require [Xilinx Vivado]().
     Xilinx Vivado is a propitary toolchain which *must be installed manually*.
 
     These boards include;
+     - Arty,
      - NeTV2,
      - Nexys_Video,
-     - TODO: Arty
+     - TODO: Cmod A7
 
   * TODO: Cyclone V based boards require [Altera Quatras]()
     Altera Quatras is a propitary toolchain which *must be installed manually*.

@@ -38,6 +38,35 @@ repository.
 
 # Prerequisite (Xilinx)
 
+  * Spartan 6 based boards require [Xilinx ISE]().
+    Xilinx ISE is a propitary toolchain which *must be installed manually*.
+
+    This is *most* boards, including
+     - Atlys,
+     - Mimas V2,
+     - Opsis,
+     - TODO: Cmod S6
+     - TODO: Pipistrello,
+     - TODO: minispartan6/minispartan6+
+
+  * "Series 7" based boards require [Xilinx Vivado]().
+    Xilinx Vivado is a propitary toolchain which *must be installed manually*.
+
+    These boards include;
+     - Arty,
+     - Cmod A7,
+     - NeTV2,
+     - Nexys_Video,
+
+  * Lattice ICE40 based boards require [Project IceStorm (Yosys, Anancr-PNR)]().
+    [XXXX] is an open source toolchain which can be installed automatically.
+
+    These boards include;
+     - IceStick?
+     - ???
+
+## Xilinx ISE - Spartan 6 & Spartan 3 Devices
+
 Install Xilinx ISE Design Suite 14.7 + activate a licence:
 
   * Download ISE Design Suite, 14.7 (Full Installer for Linux, TAR/GZIP 6.09 GB, MD5 Sum: e8065b2ffb411bb74ae32efa475f9817) from [http://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/design-tools.html]
@@ -48,9 +77,10 @@ Install Xilinx ISE Design Suite 14.7 + activate a licence:
   cd Xilinx_ISE_DS_Lin_14.7_1015_1
   sudo ./xsetup
   ```
-  **NOTE: We are aware that Xilix has End-of-Lifed ISE Design Suite, and they change their download page from time to time. Submit a bug report if there is no product by this name on the given page.**
+  **NOTE: We are aware that Xilinx has End-of-Lifed ISE Design Suite, and they change their download page from time to time. Submit a bug report if there is no product by this name on the given page.**
 
   * Register with Xilinx (free) and get a (free) "ISE WebPACK License" from [http://www.xilinx.com/getlicense]
+
   Your license, once generated, will be emailed to you.  It can also be
 recovered as follows. Go to [http://www.xilinx.com/getlicense]. Log in if
 required. Confirm your profile details. Upon submission you should end up
@@ -68,6 +98,15 @@ existing licenses.
   can see your WebPACK licence and it is green. The WebPACK license will be
   named something like `WebPACK`, `V_WebPack` or `Web_Package` (depending on
   when you got your license you might have all of them!).
+
+## Xilinx Vivado - "Series 7" devices - Artix, Kintex, Spartan 7, Zynq
+
+
+  * Ensure licence is activated by checking Vivado:
+  ```
+  source /opt/Xilinx/Vivado/2017.*/settings64.sh
+  vivado
+  ```
 
 # Bootstrap HDMI2USB-litex-firmware and dependencies
 
@@ -125,7 +164,7 @@ something like:
 ```
 
 If your prompt does not change, then check the output to see whether there are
-any errors. 
+any errors.
 
 ### On failure
 
