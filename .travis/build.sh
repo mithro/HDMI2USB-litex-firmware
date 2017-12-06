@@ -395,6 +395,7 @@ if [ ! -z "$PREBUILT_DIR" ]; then
 			echo "Pushing with PLATFORMS='$PLATFORMS'"
 			echo
 			for PLATFORM in $PLATFORMS; do
+				echo "HELLO!!!!! $PLATFORM"
 				(
 				if [ ! -d "$PLATFORM/firmware" ]; then
 					echo "No firmware directory for $PLATFORM, skipping."
