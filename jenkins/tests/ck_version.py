@@ -37,8 +37,10 @@ def board_rev(tty):
     with serial.Serial(tty, 115200, timeout=1) as ser:
 
         # send command
+        print("tx: ", end='')
+
         for c in '\n\nversion\r\n':
-            print("tx: {}".format(c.__repr__()))
+            print(c.__repr__(), end='')
             r = ser.write(c.encode())
             time.sleep(.3)
 
