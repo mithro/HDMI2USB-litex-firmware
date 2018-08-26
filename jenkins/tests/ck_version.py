@@ -43,6 +43,7 @@ def board_rev(tty):
             print(c.__repr__(), end='')
             r = ser.write(c.encode())
             time.sleep(.3)
+        print()
 
         # read and parse result
         line_no=0
