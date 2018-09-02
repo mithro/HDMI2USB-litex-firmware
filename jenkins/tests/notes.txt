@@ -1,0 +1,31 @@
+lsusb:
+2a19:0c01
+2a19:5442
+
+create
+/dev/ttyACM0
+/dev/video0
+
+connect,
+prompt: H2U 02:22:05>
+
+version
+git describe: v0.0.4-277-g2b3ff04
+
+H2U 02:21:50>x c p e
+Connecting pattern to encoder
+
+disconnect
+./grab_hdmi2usb.sh
+display frame-1.png
+
+mv frame-1.png v0.0.4-277-g2b3ff04.png
+ss.sh v0.0.4-277-g2b3ff04.pi.png
+https://veyepar.nextdayvideo.com/static/temp/v0.0.4-277-g2b3ff04.pi.png
+
+H2U 02:22:05>x c 1 e
+Connecting input1 to encoder
+
+display image on pi's vt1
+ssh pi@oppi "sudo fbi -noverbose --vt 1 1280x720_input.png"
+
