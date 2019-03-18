@@ -11,14 +11,9 @@ class ck_version(ck_tty):
 
     def git_rev(self):
 
-        # print("import sys;sys.exit()"); import code; code.interact(local=locals())
-
-        # import pdb; pdb.set_trace()
-
         url = "https://{host}/{base}/{platform}/{target}/{cpu}/channels.txt".format(**self.args.__dict__) ## save me f-strings
 
-        if self.args.verbose:
-            print(url)
+        if self.args.verbose: print(url)
 
         # data = urllib.request.urlopen(url)
         response = requests.get(url)
@@ -32,6 +27,7 @@ class ck_version(ck_tty):
                         }
 
         rev = channels[self.args.channel]['rev']
+        if self.args.verbose: print("found rev: {}".format(rev))
 
         return rev
 
@@ -75,6 +71,9 @@ class ck_version(ck_tty):
 
     def more_args(self, parser):
 
+        parser.add_argument("--rev",
+                help='rev to test for')
+
         parser.add_argument("--host", default="code.timvideos.us" ,
                 help='default: %(default)s')
         parser.add_argument("--base", default="HDMI2USB-firmware-prebuilt",
@@ -94,12 +93,16 @@ class ck_version(ck_tty):
 
     def test(self):
 
-        gr = self.git_rev()
+        if self.args.rev:
+            er = self.args.rev
+        else:
+            er = self.git_rev()
+
         br = self.board_rev()
-        assert gr==br
+        assert er==br
 
         if self.args.verbose:
-            print("{gr} == {br}".format( gr=gr, br=br))
+            print("{er} == {br}".format( er=er, br=br))
             print("expected version test passed.")
 
         return
