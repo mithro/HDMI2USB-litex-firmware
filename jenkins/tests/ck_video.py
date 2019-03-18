@@ -9,7 +9,11 @@ class ck_video(ck_ab):
     def test(self):
 
         assert os.path.exists(self.args.video), "{} does not exist.".format(self.args.video)
+        if self.args.verbose:
+            print( "{} exists.".format(self.args.video))
         assert not os.path.isfile(self.args.video), "{} is a regular file.".format(self.args.video)
+        if self.args.verbose:
+            print( "{} is not file (good).".format(self.args.video))
 
         return
 
