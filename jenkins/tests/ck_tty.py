@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 
 import argparse
-# import serial
+import serial
 import os
 import time
 
-from pprint import pprint
+from ck_ab import ck_ab
+
 
 class Tty_talker():
 
@@ -14,81 +15,83 @@ class Tty_talker():
             # um.. how's this gonna work?
             pass
 
-def tx(ser, string):
 
-    # send command
-    print("tx: ", end='')
+class ck_tty(ck_ab):
 
-    for c in string:
-        print(c.__repr__(), end='')
-        r = ser.write(c.encode())
-        time.sleep(.3)
-    print()
+    version = 0.7
+    ser = None
 
-    return
+    def tx(self, string):
 
-def rx(ser):
+        # send command
+        if self.args.verbose: print("tx: ", end='')
 
-    # read result
-    line_no=0
-    lines=[]
-    while True:
-        line = ser.readline()
+        for c in string:
+            if self.args.verbose: print(c.__repr__(), end='')
+            r = self.ser.write(c.encode())
+            time.sleep(.3)
 
-        line_no += 1
-        print( "rx: {n} {leng} {line}".format(
-            n=line_no,
-            leng = len(line),
-            line =line.__repr__()))
+        if self.args.version: print()
 
-        if len(line)==0:
-            break
+        return
 
-        line = line.decode().strip()
-        lines.append(line)
+    def rx(self):
 
-    return lines
+        # read result
+        line_no=0
+        lines=[]
+        while True:
+            line = self.ser.readline()
 
+            line_no += 1
+            if self.args.verbose:
+                print( "rx: {n} {leng} {line}".format(
+                    n=line_no,
+                    leng = len(line),
+                    line =line.__repr__()))
 
-def ck_prompt(tty):
+            if len(line)==0:
+                break
 
-    with serial.Serial(tty, 115200, timeout=1) as ser:
+            line = line.decode().strip()
+            lines.append(line)
 
-        tx(ser, '\r\n')
-        lines = rx(ser)
-
-        assert len(lines) == 1, "Unexpected prompt:{}".format(lines)
-        assert lines[0].startswith('HDMI2USB'), "Unexpected prompt:{}".format(lines)
-
-    return
-
-def test(args):
-
-    assert os.path.exists(args.tty), "{} does not exist.".format(args.tty)
-    assert not os.path.isfile(args.tty), "{} is a regular file.".format(args.tty)
-
-    return
-
-def pars_args():
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument("--tty", default="/dev/ttyACM0",
-            help='default: %(default)s')
-
-    parser.add_argument("-v --verbose", action="store_true" )
-    parser.add_argument("--version", action="store_true" )
-    parser.add_argument("--debug", action="store_true" )
-    args = parser.parse_args()
-
-    return args
+        return lines
 
 
-def main():
+    def ck_prompt(self):
 
-    args=pars_args()
-    test(args)
+        with serial.Serial(self.args.tty, 115200, timeout=1) as self.ser:
 
+            self.tx('\r\n')
+            lines = self.rx()
+
+            assert len(lines) == 2, "Unexpected prompt:{}".format(lines)
+            if self.args.verbose: print( "len(lines) == 1: {}".format(lines))
+            assert lines[1].startswith('H2U'), "Unexpected prompt:{}".format(lines)
+            if self.args.verbose: print( "lines[1].startswith('H2U') {}".format(lines[1]))
+
+        return
+
+
+    def ck_port(self):
+
+        assert os.path.exists(self.args.tty), "{} does not exist.".format(
+                self.args.tty)
+        if self.args.verbose: print( "{} does exist.".format(self.args.tty) )
+
+        assert not os.path.isfile(self.args.tty), "{} is a regular file.".format(self.args.tty)
+        if self.args.verbose: print( "{} is not a regular file. (good)".format(self.args.tty) )
+
+        return
+
+
+    def test(self):
+        self.ck_port()
+        self.ck_prompt()
+        return
 
 if __name__=='__main__':
-    main()
+    t = ck_tty()
+    t.main()
 
