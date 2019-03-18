@@ -1,5 +1,4 @@
 lsusb:
-2a19:0c01
 2a19:5442
 
 create

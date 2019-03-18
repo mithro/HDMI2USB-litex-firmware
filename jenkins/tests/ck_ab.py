@@ -5,6 +5,9 @@ import argparse
 
 class ck_ab:
 
+    def more_args(self, parser):
+        pass
+
     def pars_args(self):
         parser = argparse.ArgumentParser()
 
@@ -14,6 +17,9 @@ class ck_ab:
         parser.add_argument("-v", "--verbose", action="store_true" )
         parser.add_argument("--version", action="store_true" )
         parser.add_argument("--debug", action="store_true" )
+
+        self.more_args(parser)
+
         args = parser.parse_args()
 
         self.args = args
