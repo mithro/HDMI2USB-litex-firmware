@@ -1,39 +1,19 @@
 #!/usr/bin/python3
 
-import argparse
-# import serial
 import os
-import time
 
-from pprint import pprint
+from ck_ab import ck_ab
 
-def test(args):
+class ck_video(ck_ab):
 
-    assert os.path.exists(args.video), "{} does not exist.".format(args.video)
-    assert not os.path.isfile(args.video), "{} is a regular file.".format(args.video)
+    def test(self):
 
-    return
+        assert os.path.exists(self.args.video), "{} does not exist.".format(self.args.video)
+        assert not os.path.isfile(self.args.video), "{} is a regular file.".format(self.args.video)
 
-def pars_args():
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument("--video", default="/dev/video0",
-            help='default: %(default)s')
-
-    parser.add_argument("-v --verbose", action="store_true" )
-    parser.add_argument("--version", action="store_true" )
-    parser.add_argument("--debug", action="store_true" )
-    args = parser.parse_args()
-
-    return args
-
-
-def main():
-
-    args=pars_args()
-    test(args)
-
+        return
 
 if __name__=='__main__':
-    main()
+    t = ck_video()
+    t.main()
 

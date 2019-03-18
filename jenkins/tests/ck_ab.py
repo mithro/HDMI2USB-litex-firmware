@@ -13,6 +13,8 @@ class ck_ab:
 
         parser.add_argument("--tty", default="/dev/ttyACM0",
                 help='default: %(default)s')
+        parser.add_argument("--video", default="/dev/video0",
+                help='default: %(default)s')
 
         parser.add_argument("-v", "--verbose", action="store_true" )
         parser.add_argument("--version", action="store_true" )
