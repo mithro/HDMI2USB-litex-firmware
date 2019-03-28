@@ -1,0 +1,14 @@
+[1001007.334178] usb 3-1: USB disconnect, device number 54
+[1001008.893822] usb 3-1: new high-speed USB device number 55 using xhci_hcd
+[1001009.042148] usb 3-1: config 1 interface 2 altsetting 0 endpoint 0x81 has an invalid bInterval 64, changing to 10
+[1001009.042480] usb 3-1: New USB device found, idVendor=2a19, idProduct=5442
+[1001009.042483] usb 3-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[1001009.042485] usb 3-1: Product: HDMI2USB.tv - Numato Opsis Board
+[1001009.042488] usb 3-1: Manufacturer: TimVideos.us
+[1001009.042490] usb 3-1: SerialNumber: ffffd8803967d4f5
+[1001009.043575] uvcvideo: Found UVC 1.00 device HDMI2USB.tv - Numato Opsis Board (2a19:5442)
+[1001009.043703] uvcvideo: UVC non compliance - GET_DEF(PROBE) not supported. Enabling workaround.
+[1001009.044163] uvcvideo 3-1:1.0: Entity type for entity Extension 3 was not initialized!
+[1001009.044166] uvcvideo 3-1:1.0: Entity type for entity Processing 2 was not initialized!
+[1001009.044168] uvcvideo 3-1:1.0: Entity type for entity Camera 1 was not initialized!
+[1001009.044416] cdc_acm 3-1:1.2: ttyACM0: USB ACM device

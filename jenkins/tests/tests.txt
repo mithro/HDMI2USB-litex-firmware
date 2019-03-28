@@ -4,4 +4,5 @@ ck_video.py
 ck_jpg.py
 
 diff <(v4l2-compliance) v4l2-compliance.txt
+diff <(v4l2-ctl --all) v4l2-ctl.txt
 
