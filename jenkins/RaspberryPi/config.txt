@@ -1,0 +1,7 @@
+# /boot/config.txt
+hdmi_force_hotplug=1
+hdmi_drive=1
+avoid_edid_fuzzy_match=1
+hdmi_group=2
+hdmi_mode=85
+boot_delay=5
