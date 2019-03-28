@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 SETUP_SRC=$(realpath ${BASH_SOURCE[@]})
 SETUP_DIR=$(dirname $SETUP_SRC)
@@ -69,7 +69,7 @@ SHA256SUM_FILE="sha256sum.txt"
 	sha256sum -c $SHA256SUM_FILE
 	# Script will exit if sums don't match after sha256sum command above
 	echo ""
-	echo "Copying files to correct locations ..."	
+	echo "Copying files to correct locations ..."
 	mkdir -p $GATEWARE_DIR
 	cp $GATEWARE $GATEWARE_DIR
 	# Not all builds generate FX2 firmware
