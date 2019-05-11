@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+# abstract class for testing HDMI2USB hardware
+
 import argparse
 
 

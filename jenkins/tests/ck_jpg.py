@@ -1,5 +1,4 @@
-
-# gst-launch-1.0 v4l2src device=/dev/video0 num-buffers=3 ! jpegdec ! fakesink
+import sys
 
 import gi
 gi.require_version('Gst', '1.0')
@@ -16,13 +15,15 @@ class ck_video(ck_ab):
 
         def on_eos(bus, message):
             print('Received EOS-Signal')
-            sys.exit(1)
+            sys.exit(0)
 
         def on_error(bus, message):
             print('Received Error-Signal')
             (error, debug) = message.parse_error()
             print('Error-Details: #%u: %s' % (error.code, debug))
             sys.exit(2)
+
+        Gst.init([])
 
         print('starting pipeline...')
         senderPipeline = Gst.parse_launch(pipeline)
@@ -49,8 +50,8 @@ class ck_video(ck_ab):
 
     def test(self):
         pipeline = "v4l2src device={dev} num-buffers=3 ! jpegdec ! fakesink".format(dev=self.args.video)
-        pipeline = "videotestsrc num-buffers=3 ! jpegdec ! fakesink".format(dev=self.args.video)
-        pipeline = "fakesrc num-buffers=3 ! jpegdec ! fakesink".format(dev=self.args.video)
+        # pipeline = "videotestsrc num-buffers=3 ! jpegdec ! fakesink".format(dev=self.args.video)
+        # pipeline = "fakesrc num-buffers=3 ! jpegdec ! fakesink".format(dev=self.args.video)
 
         self.run_pipeline(pipeline)
 
@@ -61,6 +62,8 @@ if __name__=='__main__':
 
 
 """
+# gst-launch-1.0 v4l2src device=/dev/video0 num-buffers=3 ! jpegdec ! fakesink
+
 good:
 Setting pipeline to PAUSED ...
 Pipeline is live and does not need PREROLL ...
