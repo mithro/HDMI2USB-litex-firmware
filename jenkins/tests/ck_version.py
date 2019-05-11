@@ -31,6 +31,7 @@ class ck_version(ck_tty):
 
         return rev
 
+
     def board_rev(self):
 
         with serial.Serial(self.args.tty, 115200, timeout=1) as self.ser:
@@ -44,30 +45,6 @@ class ck_version(ck_tty):
 
         return rev
 
-    """
-
-            # read and parse result
-            line_no=0
-            while True:
-                line = ser.readline()
-
-                line_no += 1
-                print( "rx: {n} {leng} {line}".format(
-                    n=line_no,
-                    leng = len(line),
-                    line =line.__repr__()))
-
-                if len(line)==0:
-                    break
-
-                line = line.decode().strip()
-
-                if "describe" in line:
-                    rev = line.split(':')[1].strip()
-
-        return rev
-
-    """
 
     def more_args(self, parser):
 
@@ -99,7 +76,7 @@ class ck_version(ck_tty):
             er = self.git_rev()
 
         br = self.board_rev()
-        assert er==br
+        assert er==br, "{er} != {br}".format( er=er, br=br)
 
         if self.args.verbose:
             print("{er} == {br}".format( er=er, br=br))

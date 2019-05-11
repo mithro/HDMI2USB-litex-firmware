@@ -1,0 +1,5 @@
+cd /home/pi/HDMI2USB-litex-firmware/jenkins/tests
+venv/bin/python ck_tty.py --tty /dev/ttyACM1
+venv/bin/python ck_video.py
+# venv/bin/python ck_version.py --tty /dev/ttyACM1
+venv/bin/python ck_jpg.py

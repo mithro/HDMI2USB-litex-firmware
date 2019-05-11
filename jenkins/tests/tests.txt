@@ -5,7 +5,7 @@ ck_jpg.py
 
 diff \
   <(v4l2-compliance --device /dev/hdmi2usb/by-num/all0/video) \
-  v4l2-compliance.txt
+  ../datas/v4l2-compliance.txt
 
-diff <(v4l2-ctl --all) v4l2-ctl.txt
+diff <(v4l2-ctl --all) ../datas/v4l2-ctl.txt
 
