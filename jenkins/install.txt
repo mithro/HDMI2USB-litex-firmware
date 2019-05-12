@@ -1,0 +1,66 @@
+
+sudo apt install \
+    vim \
+    python3-venv \
+    python3-serial \
+    v4l-utils \
+    python3-gi \
+    gir1.2-gstreamer-1.0
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    jenkins \
+    libftdi1 libftdi1-2 \
+    libjaylink0 libjim0.77
+
+mkdir temp
+(
+cd temp
+wget http://http.us.debian.org/debian/pool/main/o/openocd/openocd_0.10.0-5_armhf.deb
+sudo dpkg -i openocd_0.10.0-5_armhf.deb
+
+wget http://http.us.debian.org/debian/pool/main/libj/libjaylink/libjaylink0_0.1.0-1_armhf.deb
+sudo dpkg -i libjaylink0_0.1.0-1_armhf.deb
+
+wget http://http.us.debian.org/debian/pool/main/j/jimtcl/libjim0.77_0.77+dfsg0-3_armhf.deb
+sudo dpkg -i libjim0.77_0.77+dfsg0-3_armhf.deb
+
+)
+
+# magic line:
+scp \
+  /usr/share/openocd/scripts/board/numato_opsis.cfg \
+  /usr/share/openocd/scripts/cpld/xilinx-xc6s.cfg \
+  /usr/share/openocd/scripts/cpld/jtagspi.cfg \
+ pi@oppi:
+
+sudo mv numato_opsis.cfg /usr/share/openocd/scripts/board/
+sudo mv xilinx-xc6s.cfg /usr/share/openocd/scripts/cpld/
+sudo mv jtagspi.cfg /usr/share/openocd/scripts/cpld/
+
+gdebi -i http://http.us.debian.org/debian/pool/main/o/openocd/openocd_0.10.0-5_armhf.deb
+
+sudo adduser jenkins dialout
+sudo adduser jenkins video
+
+mkdir prebuilt
+
+git clone https://github.com/timvideos/HDMI2USB-mode-switch
+(
+cd HDMI2USB-mode-switch
+python3 -m venv venv --system-site-packages
+. venv/bin/activate
+python setup.py install
+)
+
+git clone https://github.com/timvideos/HDMI2USB-litex-firmware
+(
+cd HDMI2USB-litex-firmware/jenkins/tests
+python3 -m venv venv --system-site-packages
+. venv/bin/activate
+
+pip install requests
+# pyserial
+
+# prime expected spews
+v4l2-compliance --device /dev/video0 > ../datas/v4l2-compliance.txt
+)
