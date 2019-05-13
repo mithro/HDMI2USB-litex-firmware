@@ -1,0 +1,9 @@
+cd prebuilt
+
+~/HDMI2USB-mode-switch/venv/bin/python /home/pi/HDMI2USB-mode-switch/venv/bin/hdmi2usb-mode-switch -v --flash-image image-gateware+bios+firmware.v0.0.4-462-g005f746.opsis.hdmi2usb.lm32.bin
+
+# Downloading to: image-gateware+bios+firmware.v0.0.4-462-g005f746.opsis.hdmi2usb.lm32.bin
+
+hdmi2usb-mode-switch -v --flash-image image-gateware+bios+firmware.v0.0.4-462-g005f746.opsis.hdmi2usb.lm32.bin
+
+relay-off-on.sh
