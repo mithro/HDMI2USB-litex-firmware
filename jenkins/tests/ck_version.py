@@ -10,10 +10,14 @@ from ck_tty import ck_tty
 class ck_version(ck_tty):
 
     def git_rev(self):
+        """
+        looks at channels.txt to figure out what the last build rev is expected.
+        """
 
-        url = "https://{host}/{base}/{platform}/{target}/{cpu}/channels.txt".format(**self.args.__dict__) ## save me f-strings
+        url = "https://{host}/{base}/{platform}/{target}/{cpu}/channels.txt".format(
+                **self.args.__dict__)
 
-        if self.args.verbose: print(url)
+        if self.args.verbose: print("url: {}".format(url))
 
         # data = urllib.request.urlopen(url)
         response = requests.get(url)
