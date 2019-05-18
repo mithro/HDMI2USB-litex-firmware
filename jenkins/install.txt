@@ -62,5 +62,5 @@ pip install requests
 # pyserial
 
 # prime expected spews
-v4l2-compliance --device /dev/video0 > ../datas/v4l2-compliance.txt
+v4l2-compliance --device /dev/hdmi2usb/by-num/all0/video > ../datas/v4l2-compliance.txt
 )
