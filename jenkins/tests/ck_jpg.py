@@ -50,9 +50,6 @@ class ck_video(ck_ab):
 
     def test(self):
         pipeline = "v4l2src device={dev} num-buffers=3 ! jpegdec ! fakesink".format(dev=self.args.video)
-        # pipeline = "videotestsrc num-buffers=3 ! jpegdec ! fakesink".format(dev=self.args.video)
-        # pipeline = "fakesrc num-buffers=3 ! jpegdec ! fakesink".format(dev=self.args.video)
-
         self.run_pipeline(pipeline)
 
 
@@ -62,7 +59,7 @@ if __name__=='__main__':
 
 
 """
-# gst-launch-1.0 v4l2src device=/dev/video0 num-buffers=3 ! jpegdec ! fakesink
+# gst-launch-1.0 v4l2src num-buffers=3 ! jpegdec ! fakesink
 
 good:
 Setting pipeline to PAUSED ...
