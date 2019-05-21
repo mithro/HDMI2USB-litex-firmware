@@ -41,6 +41,7 @@ gdebi -i http://http.us.debian.org/debian/pool/main/o/openocd/openocd_0.10.0-5_a
 
 sudo adduser jenkins dialout
 sudo adduser jenkins video
+sudo adduser jenkins pi
 
 mkdir prebuilt
 
@@ -64,3 +65,4 @@ pip install requests
 # prime expected spews
 v4l2-compliance --device /dev/hdmi2usb/by-num/all0/video > ../datas/v4l2-compliance.txt
 )
+
